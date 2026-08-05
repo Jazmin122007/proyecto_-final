@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final — Jaqueline Chasipanta</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;}
+        body {
+            background: linear-gradient(135deg, #f3e5f9, #fce4ec);
+            color: #5a2d82;
+            line-height: 1.6;
+            animation: fondoMovido 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes fondoMovido {
+            0% {background: linear-gradient(135deg, #f3e5f9, #fce4ec);}
+            50% {background: linear-gradient(135deg, #eef2ff, #fdeff3);}
+            100% {background: linear-gradient(135deg, #f0e6fa, #fce8ef);}
+        }
+
+        header {
+            background: linear-gradient(90deg, #ce93d8, #f8bbd0);
+            color: #4a148c;
+            padding: 18px 30px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:15px;
+            box-shadow: 0 4px 15px rgba(206, 147, 216, 0.35);
+            animation: encabezadoEntra 1s ease-out;
+        }
+
+        @keyframes encabezadoEntra {
+            from {opacity:0; transform: translateY(-30px);}
+            to {opacity:1; transform: translateY(0);}
+        }
+
+        .logo {
+            background:white;
+            color:#ab47bc;
+            padding:12px 20px;
+            border-radius:25px;
+            font-weight:bold;
+            font-size:15px;
+            text-align:center;
+            box-shadow: 0 3px 10px rgba(206, 147, 216, 0.3);
+            transition: all 0.4s ease;
+            animation: palpitarLogo 2.5s infinite;
+        }
+
+        @keyframes palpitarLogo {
+            0%, 100% {box-shadow: 0 3px 10px rgba(206, 147, 216, 0.3);}
+            50% {box-shadow: 0 3px 20px rgba(244, 143, 177, 0.5);}
+        }
+
+        .logo:hover {transform: scale(1.08) rotate(3deg);}
+
+        .titulos {text-align:center; animation: tituloEntra 1.2s ease-out;}
+        @keyframes tituloEntra {
+            from {opacity:0; letter-spacing: -2px;}
+            to {opacity:1; letter-spacing: 0;}
+        }
+        .titulos h1 {font-size:22px; margin-bottom:4px;}
+        .titulos h2 {font-size:14px; font-weight:normal; color:#6a1b9a;}
+
+        nav button {
+            background: linear-gradient(90deg, #e1bee7, #f8bbd0);
+            color:#4a148c;
+            border:none;
+            padding:10px 20px;
+            margin:4px;
+            border-radius:25px;
+            cursor:pointer;
+            font-size:14px;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 3px 8px rgba(206, 147, 216, 0.25);
+        }
+        nav button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(244, 143, 177, 0.4);
+            background: linear-gradient(90deg, #d8b4f0, #f4c4d4);
+        }
+        nav button:active {transform: translateY(0) scale(0.98);}
+
+        .info-personal {
+            display:flex;
+            gap:25px;
+            padding:25px;
+            background:white;
+            margin:15px;
+            border-radius:18px;
+            box-shadow:0 6px 20px rgba(206, 147, 216, 0.2);
+            align-items:flex-start;
+            flex-wrap:wrap;
+            animation: tarjetaEntra 1s ease-out 0.3s both;
+        }
+
+        @keyframes tarjetaEntra {
+            from {opacity:0; transform: translateY(30px) scale(0.95);}
+            to {opacity:1; transform: translateY(0) scale(1);}
+        }
+
+        .foto-perfil {
+            width:140px;
+            height:140px;
+            border-radius:50%;
+            background: linear-gradient(135deg, #e1bee7, #f8bbd0);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            border:5px solid #f3e5f5;
+            box-shadow: 0 0 0 3px #e1bee7, 0 8px 20px rgba(206, 147, 216, 0.3);
+            transition: all 0.5s ease;
+            animation: flotar 3.5s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% {transform: translateY(0);}
+            50% {transform: translateY(-8px);}
+        }
+
+        .foto-perfil:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 0 4px #f8bbd0, 0 12px 30px rgba(244, 143, 177, 0.4);
+        }
+        .foto-perfil img {width:100%; height:100%; object-fit:cover;}
+
+        .texto-info h3 {color:#8e24aa; margin-bottom:10px; font-size:18px;}
+        .texto-info p {margin:5px 0; font-size:15px; color:#6a1b9a;}
+
+        .estrellas {margin-top:10px; padding-left:10px; font-size:26px;}
+        .estrellas p {margin:10px 0; transition: transform 0.3s ease;}
+        .estrellas p:hover {transform: scale(1.15);}
+        .llena {color:#ffc107; text-shadow: 0 0 6px rgba(255, 193, 7, 0.6); animation: brillo 1.2s infinite alternate;}
+        @keyframes brillo {
+            from {text-shadow: 0 0 4px rgba(255, 193, 7, 0.4);}
+            to {text-shadow: 0 0 14px rgba(255, 193, 7, 0.8);}
+        }
+        .vacia {color:#e1bee7;}
+
+        main {padding:0 15px 30px;}
+        .unidad {
+            display:none;
+            background:white;
+            padding:25px;
+            border-radius:18px;
+            box-shadow:0 6px 20px rgba(206, 147, 216, 0.2);
+            margin-bottom:15px;
+        }
+        .unidad.activa {
+            display:block;
+            animation: unidadAparece 0.6s ease-out;
+        }
+        @keyframes unidadAparece {
+            from {opacity:0; transform: translateX(25px);}
+            to {opacity:1; transform: translateX(0);}
+        }
+
+        .unidad h2 {
+            color:#ab47bc;
+            margin-bottom:15px;
+            padding-bottom:8px;
+            border-bottom:3px solid #f8bbd0;
+            font-size:19px;
+        }
+        .unidad h3 {color:#d81b60; margin:20px 0 10px; font-size:16px;}
+        .ejercicios p {
+            padding:10px 12px;
+            border-bottom:1px solid #f3e5f5;
+            font-size:15px;
+            transition: all 0.3s ease;
+            border-radius:8px;
+        }
+        .ejercicios p:hover {
+            background: #f9f0fc;
+            padding-left:18px;
+            color:#7b1fa2;
+        }
+
+        .caja {
+            background: linear-gradient(135deg, #f9f0fc, #fef3f8);
+            border:2px solid #e1bee7;
+            padding:20px;
+            margin:12px 0;
+            border-radius:15px;
+            font-size:15px;
+            line-height:1.7;
+            text-align:center;
+            transition: all 0.4s ease;
+        }
+        .caja:hover {
+            border-color: #f48fb1;
+            box-shadow: 0 8px 25px rgba(244, 143, 177, 0.25);
+            transform: translateY(-3px);
+        }
+        .caja img {max-width:350px; width:100%; border-radius:10px;}
+
+        .codigo {
+            background: #faf4fc;
+            border-left:5px solid #f48fb1;
+            padding:18px;
+            margin:12px 0;
+            font-family:monospace;
+            font-size:14px;
+            border-radius:10px;
+            line-height:1.6;
+            transition: all 0.4s ease;
+        }
+        .codigo:hover {
+            border-left-color: #ce93d8;
+            background: #f4eaf8;
+            box-shadow: inset 5px 0 15px rgba(206, 147, 216, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== ENCABEZADO ========== -->
+<header>
+    <div class="logo">PROGRAMACIÓN 💜</div>
+    <div class="titulos">
+        <h1>✨ MI PROYECTO FINAL ✨</h1>
+        <h2>🌸 UNIVERSIDAD TÉCNICA DE COTOPAXI 🌸</h2>
+    </div>
+    <nav>
+        <button onclick="mostrar(1)">📘 Unidad 1</button>
+        <button onclick="mostrar(2)">📗 Unidad 2</button>
+        <button onclick="mostrar(3)">📙 Unidad 3</button>
+    </nav>
+</header>
+
+<!-- ========== INFORMACIÓN PERSONAL ========== -->
+<section class="info-personal">
+    <div class="foto-perfil">
+        <img src="foto.jpg" alt="Foto de perfil">
+    </div>
+    <div class="texto-info">
+        <h3>👋 ¡Hola!</h3>
+        <p>Yo me llamo <strong>Jaqueline Jazmine Chasipanta Toaquiza</strong>.</p>
+        <strong>Tengo 18 años.</strong><br>
+        <strong>Nací el 8 de septiembre del 2007.</strong><br>
+        <strong>Soy de Pujilí.</strong><br>
+        <strong>Mi pasatiempo favorito es dormir.</strong> 😴
+    </div>
+    <div class="estrellas">
+        <p><strong>Unidad 1:</strong> 
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+        </p>
+        <p><strong>Unidad 2:</strong> 
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="vacia">★</span>
+            <span class="vacia">★</span>
+        </p>
+        <p><strong>Unidad 3:</strong> 
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="llena">★</span>
+            <span class="vacia">★</span>
+            <span class="vacia">★</span>
+        </p>
+    </div>
+</section>
+
+<!-- ========== UNIDAD 1 ========== -->
+<section class="unidad activa" id="u1">
+    <h2>📘 Unidad 1 — Sistemas de Numeración</h2>
+    <p><strong>Lo que vimos:</strong> Los números binarios y conversiones entre sistemas.</p>
+    <div class="ejercicios">
+        <p>✅ Binario a Octal: &nbsp; <strong>10110₂ = 26₈</strong></p>
+        <p>✅ Octal a Decimal: &nbsp; <strong>34₈ = 28₁₀</strong></p>
+        <p>✅ Decimal a Octal: &nbsp; <strong>45₁₀ = 55₈</strong></p>
+        <p>✅ Decimal a Binario: &nbsp; <strong>19₁₀ = 10011₂</strong></p>
+        <p>✅ Binario a Decimal: &nbsp; <strong>1101₂ = 13₁₀</strong></p>
+        <p>✅ Decimal a Hexadecimal: &nbsp; <strong>254₁₀ = FE₁₆</strong></p>
+        <p>✅ Hexadecimal a Decimal: &nbsp; <strong>2B₁₆ = 43₁₀</strong></p>
+    </div>
+</section>
+
+<!-- ========== UNIDAD 2 ========== -->
+<section class="unidad" id="u2">
+    <h2>📗 Unidad 2 — Algoritmos</h2>
+    <p><strong>Lo que vimos:</strong> Los algoritmos, diagrama de flujo y pseudocódigo.</p>
+
+    <h3>Ejemplo: Estudiar y aprender</h3>
+    <p><strong>Diagrama de flujo:</strong></p>
+    <div class="caja">
+        <img src="diagrama.jpg" alt="Diagrama de flujo">
+    </div>
+
+    <h3>Pseudocódigo:</h3>
+    <div class="codigo">
+Algoritmo EstudiarYAprender
+    Repetir
+        Escribir "Estudiar"
+        Escribir "Resolver problemas"
+        Leer "¿Aprendido?"
+    Hasta Que Aprendido = Si
+    Escribir "¡Fin!"
+FinAlgoritmo
+    </div>
+</section>
+
+<!-- ========== UNIDAD 3 ========== -->
+<section class="unidad" id="u3">
+    <h2>📙 Unidad 3 — Python y Lógica Digital</h2>
+
+    <h3>🔹 Ejemplo en Python</h3>
+    <div class="codigo">
+# Programa que suma dos números
+num1 = int(input("Ingrese el primer número: "))
+num2 = int(input("Ingrese el segundo número: "))
+suma = num1 + num2
+print(f"La suma es: {suma}")
+    </div>
+
+    <h3>🔹 Suma Binaria — Ejemplo: 1011 + 1101</h3>
+    <p><strong>Resultado:</strong> 1011 + 1101 = <strong>11000</strong></p>
+    <div class="caja">
+  1 0 1 1   (11)<br>
++ 1 1 0 1   (13)<br>
+-------<br>
+1 1 0 0 0   (24)<br><br>
+<strong>Paso a paso:</strong><br>
+1ª columna: 1+1=2 → se escribe 0 y se lleva 1<br>
+2ª columna: 1+0+1=2 → se escribe 0 y se lleva 1<br>
+3ª columna: 0+1+1=2 → se escribe 0 y se lleva 1<br>
+4ª columna: 1+1+1=3 → se escribe 1 y se lleva 1<br>
+Último: se baja el 1 que sobra → <strong>11000</strong>
+    </div>
+
+    <h3>🔹 Mapa de Karnaugh — Ejemplo: F(x,y) = Σ(0, 1, 3)</h3>
+    <div class="caja">
+<strong>📋 Tabla de Verdad</strong><br>
+x &nbsp; | &nbsp; y &nbsp; | &nbsp; F<br>
+---|---|---<br>
+0 &nbsp; | &nbsp; 0 &nbsp; | &nbsp; 1<br>
+0 &nbsp; | &nbsp; 1 &nbsp; | &nbsp; 1<br>
+1 &nbsp; | &nbsp; 0 &nbsp; | &nbsp; 0<br>
+1 &nbsp; | &nbsp; 1 &nbsp; | &nbsp; 1<br><br>
+<strong>🟦 Mapa de Karnaugh</strong><br>
+&nbsp; &nbsp; &nbsp; y=0 &nbsp; y=1<br>
+x=0 &nbsp; &nbsp; 1 &nbsp; &nbsp; &nbsp; 1<br>
+x=1 &nbsp; &nbsp; 0 &nbsp; &nbsp; &nbsp; 1<br><br>
+<strong>✅ Simplificación:</strong> F = x' + y
+    </div>
+</section>
+
+</main>
+
+<script>
+function mostrar(n) {
+    document.querySelectorAll('.unidad').forEach(u => u.classList.remove('activa'));
+    document.getElementById('u'+n).classList.add('activa');
+}
+</script>
+</body>
+</html>
