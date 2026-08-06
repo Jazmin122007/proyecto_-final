@@ -78,6 +78,10 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 3px 8px rgba(206, 147, 216, 0.25);
         }
+        .btn-inicio {
+            background: linear-gradient(90deg, #f48fb1, #ce93d8);
+            color: white;
+        }
         nav button:hover {
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 6px 20px rgba(244, 143, 177, 0.4);
@@ -181,6 +185,113 @@
             color:#7b1fa2;
         }
 
+        .bienvenida {
+            background: linear-gradient(135deg, #ffffff, #fce4ec);
+            border:2px solid #f8bbd0;
+            padding:24px;
+            margin:15px 0 20px;
+            border-radius:18px;
+            box-shadow:0 8px 24px rgba(206, 147, 216, 0.2);
+            text-align:center;
+        }
+        .bienvenida h2 {
+            color:#ab47bc;
+            margin-bottom:10px;
+            font-size:24px;
+        }
+        .bienvenida p {
+            color:#6a1b9a;
+            font-size:16px;
+            max-width:800px;
+            margin:0 auto 10px;
+        }
+
+        .pantalla-inicio {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7, #c5cae9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            transition: opacity 0.6s ease;
+            overflow: hidden;
+        }
+        .pantalla-inicio.oculta {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pantalla-inicio::before,
+        .pantalla-inicio::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            animation: floatOrb 8s ease-in-out infinite;
+        }
+        .pantalla-inicio::before {top:-60px; left:-50px;}
+        .pantalla-inicio::after {bottom:-70px; right:-40px; animation-delay: 2s;}
+        @keyframes floatOrb {
+            0%, 100% {transform: translateY(0) scale(1);} 
+            50% {transform: translateY(-25px) scale(1.08);} 
+        }
+        .card-bienvenida {
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 35px;
+            max-width: 620px;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(123, 31, 162, 0.25);
+            position: relative;
+            z-index: 2;
+            animation: entrarCard 0.8s ease-out;
+        }
+        @keyframes entrarCard {
+            from {opacity: 0; transform: translateY(30px) scale(0.95);} 
+            to {opacity: 1; transform: translateY(0) scale(1);} 
+        }
+        .card-bienvenida h1 {
+            color: #8e24aa;
+            font-size: 28px;
+            margin-bottom: 12px;
+            animation: pulseTitle 1.6s ease-in-out infinite;
+        }
+        @keyframes pulseTitle {
+            0%, 100% {transform: scale(1);} 
+            50% {transform: scale(1.03);} 
+        }
+        .card-bienvenida p {
+            color: #6a1b9a;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+        .btn-entrar {
+            background: linear-gradient(90deg, #ab47bc, #f48fb1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(171, 71, 188, 0.25);
+            animation: moverBoton 1.3s ease-in-out infinite alternate;
+        }
+        @keyframes moverBoton {
+            from {transform: translateY(0);} 
+            to {transform: translateY(-4px);} 
+        }
+        .btn-entrar:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(171, 71, 188, 0.3);
+        }
+        .contenido-principal {
+            display: block;
+        }
+
         .caja {
             background: linear-gradient(135deg, #f9f0fc, #fef3f8);
             border:2px solid #e1bee7;
@@ -218,7 +329,15 @@
     </style>
 </head>
 <body>
+<section class="pantalla-inicio" id="pantallaInicio">
+    <div class="card-bienvenida">
+        <h1>🌸 Bienvenida</h1>
+        <p>Este es mi proyecto final, un espacio lleno de creatividad donde podrás conocer mis aprendizajes, ejercicios y experiencias de cada unidad.</p>
+        <button class="btn-entrar" id="btnEntrar">Entrar al proyecto</button>
+    </div>
+</section>
 
+<div class="contenido-principal" id="contenidoPrincipal">
 <!-- ========== ENCABEZADO ========== -->
 <header>
     <div class="logo">PROGRAMACIÓN 💜</div>
@@ -227,6 +346,7 @@
         <h2>🌸 UNIVERSIDAD TÉCNICA DE COTOPAXI 🌸</h2>
     </div>
     <nav>
+        <button class="btn-inicio" onclick="mostrarInicio()">🏠 Inicio</button>
         <button onclick="mostrar(1)">📘 Unidad 1</button>
         <button onclick="mostrar(2)">📗 Unidad 2</button>
         <button onclick="mostrar(3)">📙 Unidad 3</button>
@@ -271,9 +391,19 @@
     </div>
 </section>
 
+<section class="bienvenida">
+    <h2>🌷 Bienvenidos</h2>
+    <p>Les presento mi proyecto final, un espacio donde comparto mis aprendizajes, ejercicios y conocimientos de cada unidad de manera clara y creativa.</p>
+    <p>Aquí podrán conocer el recorrido de mi formación y la importancia de cada tema que exploré durante este proyecto.</p>
+</section>
+
+<main>
 <!-- ========== UNIDAD 1 ========== -->
 <section class="unidad activa" id="u1">
     <h2>📘 Unidad 1 — Sistemas de Numeración</h2>
+    <p>En esta unidad aprendí sobre los sistemas de numeración, que me permiten comprender cómo se representan los números en diferentes bases como binaria, octal y hexadecimal.</p>
+    <p>La introducción de este tema es fundamental porque nos enseña que los números no siempre se escriben de la misma manera; dependen del sistema que se utilice. Esto es muy importante en la informática, ya que las computadoras trabajan principalmente con el sistema binario, y comprenderlo nos ayuda a entender mejor cómo se almacenan y procesan los datos.</p>
+    <p>También descubrí que los sistemas de numeración son una herramienta esencial para convertir valores entre distintas bases y para interpretar información técnica de una manera más clara y organizada.</p>
     <p><strong>Lo que vimos:</strong> Los números binarios y conversiones entre sistemas.</p>
     <div class="ejercicios">
         <p>✅ Binario a Octal: &nbsp; <strong>10110₂ = 26₈</strong></p>
@@ -289,6 +419,9 @@
 <!-- ========== UNIDAD 2 ========== -->
 <section class="unidad" id="u2">
     <h2>📗 Unidad 2 — Algoritmos</h2>
+    <p>En esta unidad conocí la importancia de los algoritmos, ya que sirven para resolver problemas paso a paso de forma ordenada, lógica y clara.</p>
+    <p>La introducción a este tema me permitió comprender que un algoritmo es la base para diseñar soluciones eficientes y para desarrollar programas con un razonamiento estructurado. Aprendí que resolver un problema no consiste solo en encontrar una respuesta, sino en encontrar la mejor forma de llegar a ella de manera lógica y ordenada.</p>
+    <p>Además, comprendí que los diagramas de flujo y el pseudocódigo son herramientas muy útiles para representar ideas, planificar procesos y facilitar la comprensión de cualquier solución antes de programarla.</p>
     <p><strong>Lo que vimos:</strong> Los algoritmos, diagrama de flujo y pseudocódigo.</p>
 
     <h3>Ejemplo: Estudiar y aprender</h3>
@@ -313,6 +446,9 @@ FinAlgoritmo
 <!-- ========== UNIDAD 3 ========== -->
 <section class="unidad" id="u3">
     <h2>📙 Unidad 3 — Python y Lógica Digital</h2>
+    <p>En esta unidad exploré la relación entre Python y la lógica digital, comprendiendo cómo las instrucciones y los circuitos pueden trabajarse de forma estructurada.</p>
+    <p>La introducción de este tema fue muy interesante porque muestra cómo la programación y la electrónica se unen para crear soluciones tecnológicas más complejas y funcionales. Aprendí que Python es una herramienta poderosa para expresar ideas y automatizar procesos, mientras que la lógica digital permite comprender el funcionamiento interno de los dispositivos y sistemas tecnológicos.</p>
+    <p>Esta unidad me ayudó a ver que la tecnología no solo se basa en escribir código, sino también en entender el razonamiento detrás de cada proceso, desde una simple instrucción hasta un circuito más elaborado.</p>
 
     <h3>🔹 Ejemplo en Python</h3>
     <div class="codigo">
@@ -356,12 +492,24 @@ x=1 &nbsp; &nbsp; 0 &nbsp; &nbsp; &nbsp; 1<br><br>
 </section>
 
 </main>
+</div>
 
 <script>
 function mostrar(n) {
     document.querySelectorAll('.unidad').forEach(u => u.classList.remove('activa'));
     document.getElementById('u'+n).classList.add('activa');
 }
+
+function mostrarInicio() {
+    document.getElementById('pantallaInicio').classList.remove('oculta');
+}
+
+const pantallaInicio = document.getElementById('pantallaInicio');
+const btnEntrar = document.getElementById('btnEntrar');
+
+btnEntrar.addEventListener('click', () => {
+    pantallaInicio.classList.add('oculta');
+});
 </script>
 </body>
 </html>
